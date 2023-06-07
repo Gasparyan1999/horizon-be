@@ -1,11 +1,14 @@
 import "reflect-metadata";
 import express, { Request, Response } from "express";
+import cors from "cors";
+import { env } from "./environment/env";
+
 const router = require("./routers/index");
 
-import { env } from "./environment/env";
 import { DBConnecton } from "./database";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use("/api", router);
 

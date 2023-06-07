@@ -14,7 +14,10 @@ export class AuthService {
         await userRepository.save(user);
       }
 
-      const token = generateToken(user, env.secretKey);
+      const token = generateToken(
+        { id: user.id, userName: user.userName },
+        env.secretKey
+      );
 
       return token;
     } catch (err: any) {
