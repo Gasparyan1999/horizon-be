@@ -29,7 +29,16 @@ export class AuthService {
         env.secretKey
       );
 
-      return token;
+      return {
+        token,
+        user: {
+          name: user.name,
+          lastName: user.lastName,
+          email: user.email,
+          id: user.id,
+          createdDate: user.createdDate,
+        },
+      };
     } catch (err: any) {
       throw new Error(err.message);
     }
@@ -57,7 +66,16 @@ export class AuthService {
         env.secretKey
       );
 
-      return token;
+      return {
+        token,
+        user: {
+          name: user.name,
+          lastName: user.lastName,
+          email: user.email,
+          id: user.id,
+          createdDate: user.createdDate,
+        },
+      };
     } catch (err: any) {
       throw new Error(err.message);
     }
