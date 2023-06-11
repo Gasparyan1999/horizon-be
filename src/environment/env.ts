@@ -5,4 +5,5 @@ export const env = {
   socketPort: process.env.SOCKET_PORT ?? 5000,
   secretKey: process.env.SECRET_KEY ?? "my-secret-key",
   originUrl: process.env.ORIGIN_URL,
+  saltRounds: process.env.SALT_ROUNDS ?? 10,
 };
