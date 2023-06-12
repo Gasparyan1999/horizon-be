@@ -13,7 +13,6 @@ export class AuthService {
       });
 
       if (!user) {
-        console.log(newUser.password);
         const hashedPassword = await bcrypt.hash(
           newUser.password,
           +env.saltRounds
@@ -25,7 +24,13 @@ export class AuthService {
       }
 
       const token = generateToken(
-        { id: user.id, email: user.email },
+        {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          lastName: user.lastName,
+          createdDate: user.createdDate,
+        },
         env.secretKey
       );
 
@@ -62,7 +67,13 @@ export class AuthService {
       if (!isPasswordMatch) throw new Error("Invalid Email or Password");
 
       const token = generateToken(
-        { id: user.id, email: user.email },
+        {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          lastName: user.lastName,
+          createdDate: user.createdDate,
+        },
         env.secretKey
       );
 
@@ -80,4 +91,5 @@ export class AuthService {
       throw new Error(err.message);
     }
   }
+  
 }
