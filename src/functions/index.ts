@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { CreateUserInput } from "../entties/user";
+import { CreateUserInput } from "../entities/user";
 
 export function generateToken(
   payload: any,

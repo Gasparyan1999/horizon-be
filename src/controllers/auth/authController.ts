@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AuthService } from "../../services/authService/authService";
-import { CreateUserInput } from "../../entties/user";
+import { CreateUserInput } from "../../entities/user";
 import HttpStatusCode from "../../helpers/StatusCodes";
 import { CustomRequest } from "../../type";
 

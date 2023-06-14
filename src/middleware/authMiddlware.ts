@@ -5,7 +5,7 @@ import { env } from "../environment/env";
 import { decodeToken } from "../functions";
 import { CustomRequest, UserInfo } from "../type";
 import { AppDataSource } from "../database";
-import { User } from "../entties/user";
+import { User } from "../entities/user";
 
 export class AuthMiddleware {
   public static async tokenVerification(
@@ -38,6 +38,7 @@ export class AuthMiddleware {
         lastName: findUser.lastName,
         email: findUser.email,
         createdDate: findUser.createdDate,
+        userType: findUser.userType,
       };
       req.user = user;
 

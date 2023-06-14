@@ -1,5 +1,6 @@
 import { DataSource } from "typeorm";
-import { User } from "../entties/user";
+import { User } from "../entities/user";
+import { Admin } from "../entities/admin";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -8,7 +9,7 @@ export const AppDataSource = new DataSource({
   username: "postgres",
   password: "goshamaks1999",
   database: "horizon",
-  entities: [User],
+  entities: [User, Admin],
   synchronize: true,
   logging: false,
 });
@@ -17,7 +18,7 @@ export const AppDataSource = new DataSource({
 // and "synchronize" database schema, call "initialize()" method of a newly created database
 // once in your application bootstrap
 export const DBConnecton = async () => {
-  AppDataSource.initialize()
+  await AppDataSource.initialize()
     .then(() => {
       console.log("Successfully connected to DB");
       // here you can start to work with your database

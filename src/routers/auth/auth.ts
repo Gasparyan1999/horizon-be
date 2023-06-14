@@ -8,4 +8,4 @@ router.get("/", AuthMiddleware.tokenVerification, AuthController.userAccess);
 router.post("/signup", AuthController.signup);
 router.post("/login", AuthController.login);
 
-module.exports = router;
+export default router

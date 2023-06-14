@@ -3,9 +3,9 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  BeforeInsert,
 } from "typeorm";
-import { v4 as uuidv4 } from "uuid";
+
+type UserType = "admin" | "basic";
 
 @Entity()
 export class User {
@@ -14,6 +14,13 @@ export class User {
 
   @Column({
     length: 100,
+    default: "basic",
+  })
+  userType!: UserType;
+
+  @Column({
+    length: 100,
+    unique: true,
   })
   email!: string;
 
@@ -36,5 +43,5 @@ export class User {
   createdDate!: Date;
 }
 
-export type CreateUserInput = Omit<User, "id" | "createdDate">;
+export type CreateUserInput = Omit<User, "id" | "createdDate" | 'userType'>;
 export type GetUserOutput = User;

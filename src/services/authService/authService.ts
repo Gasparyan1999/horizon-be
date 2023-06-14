@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { User, CreateUserInput } from "../../entties/user";
+import { User, CreateUserInput } from "../../entities/user";
 import { AppDataSource } from "../../database";
 import { generateToken } from "../../functions";
 import { env } from "../../environment/env";
@@ -30,6 +30,7 @@ export class AuthService {
           name: user.name,
           lastName: user.lastName,
           createdDate: user.createdDate,
+          userType: user.userType,
         },
         env.secretKey
       );
@@ -42,6 +43,7 @@ export class AuthService {
           email: user.email,
           id: user.id,
           createdDate: user.createdDate,
+          userType: user.userType,
         },
       };
     } catch (err: any) {
@@ -73,6 +75,7 @@ export class AuthService {
           name: user.name,
           lastName: user.lastName,
           createdDate: user.createdDate,
+          userType: user.userType,
         },
         env.secretKey
       );
@@ -85,11 +88,11 @@ export class AuthService {
           email: user.email,
           id: user.id,
           createdDate: user.createdDate,
+          userType: user.userType,
         },
       };
     } catch (err: any) {
       throw new Error(err.message);
     }
   }
-  
 }

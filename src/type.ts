@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { GetUserOutput } from "./entties/user";
+import { GetUserOutput } from "./entities/user";
 
 export type UserInfo = Omit<GetUserOutput, "password">;
 
