@@ -2,23 +2,23 @@ import "reflect-metadata";
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { env } from "./environment/env";
-import router from "./routers/index";
-// import adminRouter from "./routers/admin/index";
-
-import { DBConnecton } from "./database";
 import { AuthMiddleware } from "./middleware/authMiddlware";
 import { AdminMiddleware } from "./middleware/adminVerification";
+import router from "./routers/index";
+import adminRouter from "./routers/admin/index";
+import { DBConnecton } from "./database";
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.static(__dirname));
+
 app.use("/api", router);
-// app.use(
-//   "/admin",
-//   AuthMiddleware.tokenVerification,
-//   AdminMiddleware.adminChecking,
-//   adminRouter
-// );
+app.use(
+  "/admin",
+  AuthMiddleware.tokenVerification,
+  AdminMiddleware.adminChecking,
+  adminRouter
+);
 
 app.get("/", (_req: Request, res: Response) => {
   res.send("Hello, World!");

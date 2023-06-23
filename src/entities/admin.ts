@@ -10,11 +10,8 @@ export class Admin {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column({
-    length: 100,
-    unique: true,
-  })
-  name!: string;
+  @Column({ type: "jsonb", nullable: true })
+  name!: object;
 
   @Column({
     length: 100,
@@ -23,27 +20,32 @@ export class Admin {
   type!: string;
 
   @Column({
-    length: 100,
+    default: false,
+  })
+  isArchived!: boolean;
+
+  @CreateDateColumn()
+  createdDate!: Date;
+
+  @Column({
+    nullable: true,
   })
   exampleOne!: string;
 
   @Column({
-    length: 100,
+    nullable: true,
   })
   exampleTwo!: string;
 
   @Column({
-    length: 100,
+    nullable: true,
   })
   exampleThree!: string;
 
   @Column({
-    length: 100,
+    nullable: true,
   })
   exampleFour!: string;
-
-  @CreateDateColumn()
-  createdDate!: Date;
 }
 
 export type CreateAdminInput = Omit<Admin, "id" | "createdDate">;
