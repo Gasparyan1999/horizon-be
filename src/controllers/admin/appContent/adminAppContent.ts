@@ -46,4 +46,22 @@ export class AdminAppContentController {
         .send({ message: err.message });
     }
   }
+
+  public static async updateNavigate(req: CustomRequest, res: Response) {
+    try {
+      const { id } = req.params;
+      const { isArchived } = req.body;
+      if (!id) throw new Error("Id is missing");
+      const navBar = await AdminAppContentService.updateAppNavigate(
+        id,
+        isArchived
+      );
+
+      res.send({ navBar });
+    } catch (err: any) {
+      res
+        .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
+        .send({ message: err.message });
+    }
+  }
 }

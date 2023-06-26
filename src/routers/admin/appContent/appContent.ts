@@ -6,6 +6,7 @@ const upload = multer({ dest: "public/uploads" }); // Папка, в котор�
 const router = Router();
 
 router.get("/navigate", AdminAppContentController.getNavigate);
+router.put("/navigate/:id", AdminAppContentController.updateNavigate);
 router.delete("/navigate/:id", AdminAppContentController.removeNavigate);
 router.post(
   "/navigate",

@@ -81,4 +81,19 @@ export class AdminAppContentService {
       throw new Error(err.message);
     }
   }
+
+  public static async updateAppNavigate(id: string, isArchived: boolean) {
+    try {
+      const adminRepository = AppDataSource.getRepository(Admin);
+      const navBar = await adminRepository.findOne({ where: { id } });
+
+      if (!navBar) throw new Error("Navigation bar has not found");
+      navBar.isArchived = isArchived;
+      const updatedItem = await adminRepository.save(navBar);
+
+      return { ...updatedItem };
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+  }
 }
