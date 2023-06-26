@@ -14,26 +14,15 @@ export function decodeToken(token: string, secret: string) {
   return decoded;
 }
 
-export const handleImageUpload = (file: Express.Multer.File): Buffer => {
-  const buffer = Buffer.from(file.buffer);
-  return buffer;
+export const removeFiles = (filePaths: Array<string>): Boolean => {
+  for (let i = 0; i < filePaths.length; i++) {
+    if (!fs.existsSync(filePaths[i]) || !fs.statSync(filePaths[i]).isFile())
+      return false;
+  }
+
+  for (let i = 0; i < filePaths.length; i++) {
+    fs.unlinkSync(filePaths[i]);
+  }
+
+  return true;
 };
-
-export async function saveFile(file: Express.Multer.File, fileName: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const filePath = `../uploads/${fileName}`;
-
-    const writeStream = fs.createWriteStream(filePath);
-    writeStream.on("finish", () => {
-      // Путь к сохраненному файлу
-      const fileUrl = `/uploads/${fileName}`;
-      resolve(fileUrl);
-    });
-    writeStream.on("error", reject);
-
-    // Запись файла в файловую систему
-    writeStream.write(file.buffer);
-    writeStream.end();
-  });
-}
-

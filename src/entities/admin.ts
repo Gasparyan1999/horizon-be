@@ -50,3 +50,12 @@ export class Admin {
 
 export type CreateAdminInput = Omit<Admin, "id" | "createdDate">;
 export type GetAdminOutput = Admin;
+export type GetAdminOutputWithBuffer = Omit<
+  GetAdminOutput,
+  "exampleOne" | "exampleTwo" | "exampleThree" | "exampleFour"
+> & {
+  exampleOne: Buffer;
+  exampleTwo: Buffer;
+  exampleThree: Buffer;
+  exampleFour: Buffer;
+};

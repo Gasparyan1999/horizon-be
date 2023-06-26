@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import express, { Request, Response } from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
 import { env } from "./environment/env";
 import { AuthMiddleware } from "./middleware/authMiddlware";
 import { AdminMiddleware } from "./middleware/adminVerification";
@@ -10,6 +11,7 @@ import { DBConnecton } from "./database";
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 app.use("/api", router);

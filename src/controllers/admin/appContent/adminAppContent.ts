@@ -20,4 +20,30 @@ export class AdminAppContentController {
         .send({ message: err.message });
     }
   }
+
+  public static async getNavigate(req: CustomRequest, res: Response) {
+    try {
+      const navBar = await AdminAppContentService.getAppNavigate();
+
+      res.send({ navBar });
+    } catch (err: any) {
+      res
+        .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
+        .send({ message: err.message });
+    }
+  }
+
+  public static async removeNavigate(req: CustomRequest, res: Response) {
+    try {
+      const { id } = req.params;
+      if (!id) throw new Error("Id is missing");
+      const navBar = await AdminAppContentService.removeAppNavigate(id);
+
+      res.send({ navBar });
+    } catch (err: any) {
+      res
+        .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
+        .send({ message: err.message });
+    }
+  }
 }

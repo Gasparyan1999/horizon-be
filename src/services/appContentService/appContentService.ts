@@ -8,21 +8,15 @@ export class AppContentService {
   public static async getAppNavigate() {
     try {
       const adminRepository = AppDataSource.getRepository(Admin);
-      const navBars = await adminRepository.find();
+      const navBars: any = await adminRepository.find({
+        where: { isArchived: false },
+      });
 
       for (const navBar of navBars) {
-        navBar.exampleOne = fs.readFileSync(navBar.exampleOne, {
-          encoding: "base64",
-        });
-        navBar.exampleTwo = fs.readFileSync(navBar.exampleTwo, {
-          encoding: "base64",
-        });
-        navBar.exampleThree = fs.readFileSync(navBar.exampleThree, {
-          encoding: "base64",
-        });
-        navBar.exampleFour = fs.readFileSync(navBar.exampleFour, {
-          encoding: "base64",
-        });
+        navBar.exampleOne = fs.readFileSync(navBar.exampleOne);
+        navBar.exampleTwo = fs.readFileSync(navBar.exampleTwo);
+        navBar.exampleThree = fs.readFileSync(navBar.exampleThree);
+        navBar.exampleFour = fs.readFileSync(navBar.exampleFour);
       }
 
       return navBars;
