@@ -1,4 +1,3 @@
-import fs from "fs";
 import { AppDataSource } from "../../database";
 import { Admin } from "../../entities/admin";
 import { Color } from "../../entities/color";
@@ -8,16 +7,9 @@ export class AppContentService {
   public static async getAppNavigate() {
     try {
       const adminRepository = AppDataSource.getRepository(Admin);
-      const navBars: any = await adminRepository.find({
+      const navBars = await adminRepository.find({
         where: { isArchived: false },
       });
-
-      for (const navBar of navBars) {
-        navBar.exampleOne = fs.readFileSync(navBar.exampleOne);
-        navBar.exampleTwo = fs.readFileSync(navBar.exampleTwo);
-        navBar.exampleThree = fs.readFileSync(navBar.exampleThree);
-        navBar.exampleFour = fs.readFileSync(navBar.exampleFour);
-      }
 
       return navBars;
     } catch (err: any) {

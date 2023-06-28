@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import fs from "fs";
+import { env } from "../environment/env";
 
 export function generateToken(
   payload: any,
@@ -25,4 +26,12 @@ export const removeFiles = (filePaths: Array<string>): Boolean => {
   }
 
   return true;
+};
+
+export const convertToUrl = (path: string) => {
+  return `${env.baseUrl}/${path}`;
+};
+
+export const removeUrlFromPath = (path: string) => {
+  return path.replace(`${env.baseUrl}/`, "");
 };

@@ -6,6 +6,7 @@ export const env: any = {
   socketPort: process.env.SOCKET_PORT ?? 5000,
   secretKey: process.env.SECRET_KEY ?? "my-secret-key",
   originUrl: process.env.ORIGIN_URL,
+  baseUrl: process.env.BASE_URL,
   saltRounds: process.env.SALT_ROUNDS ?? 10,
   dbPort: process.env.DB_PORT,
   dbType: process.env.DB_TYPE ?? "postgres",

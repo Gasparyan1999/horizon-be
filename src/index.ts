@@ -8,11 +8,13 @@ import { AdminMiddleware } from "./middleware/adminVerification";
 import router from "./routers/index";
 import adminRouter from "./routers/admin/index";
 import { DBConnecton } from "./database";
+import path from "path";
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
+const publicPath = path.join(__dirname, "../public");
+app.use("/public", express.static(publicPath));
 
 app.use("/api", router);
 app.use(

@@ -6,6 +6,7 @@ export class AdminProductController {
   public static async adminSaveProduct(req: Request, res: Response) {
     try {
       const data = await AdminProdcutService.adminProductSave();
+      
       res.send({ data });
     } catch (err: any) {
       res.status(HttpStatusCode.UNAUTHORIZED).send({ message: err.message });

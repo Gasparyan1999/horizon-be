@@ -1,8 +1,18 @@
 import Router from "express";
 import { AdminAppContentController } from "../../../controllers/admin/appContent/adminAppContent";
 import multer from "multer";
+import { v4 as uuidv4 } from "uuid";
 
-const upload = multer({ dest: "public/uploads" }); // Папка, в которую будут сохраняться загруженные файлы
+const storage = multer.diskStorage({
+  destination: "public/uploads",
+  filename: function (req, file, cb) {
+    const fileName = `${uuidv4()}.${file.originalname.split(".").pop()}`;
+    cb(null, fileName);
+  },
+});
+
+const upload = multer({ storage: storage });
+
 const router = Router();
 
 router.get("/navigate", AdminAppContentController.getNavigate);

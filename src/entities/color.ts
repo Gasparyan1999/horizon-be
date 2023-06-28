@@ -20,6 +20,7 @@ export class Color {
 
   @Column({
     length: 100,
+    unique: true,
   })
   colorHex!: string;
 
@@ -37,9 +38,23 @@ export class Color {
   @JoinTable()
   products!: Product[];
 
+  @Column({ nullable: true })
+  numberOfProducts!: number;
+
   @CreateDateColumn()
   createdDate!: Date;
+
+  async countNumberOfProducts(): Promise<number> {
+    if (this.products) {
+      return this.products.length;
+    } else {
+      return 0;
+    }
+  }
 }
 
-export type CreateColorInput = Omit<Color, "id" | "createdDate" | "products">;
+export type CreateColorInput = Omit<
+  Color,
+  "id" | "createdDate" | "products" | "numberOfProducts"
+>;
 export type GetColorOutput = Color;

@@ -50,11 +50,12 @@ export class AdminAppContentController {
   public static async updateNavigate(req: CustomRequest, res: Response) {
     try {
       const { id } = req.params;
-      const { isArchived } = req.body;
+      const { isArchived, priority } = req.body;
       if (!id) throw new Error("Id is missing");
       const navBar = await AdminAppContentService.updateAppNavigate(
         id,
-        isArchived
+        isArchived,
+        priority
       );
 
       res.send({ navBar });

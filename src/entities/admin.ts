@@ -24,6 +24,11 @@ export class Admin {
   })
   isArchived!: boolean;
 
+  @Column({
+    default: 0,
+  })
+  priority!: number;
+
   @CreateDateColumn()
   createdDate!: Date;
 
