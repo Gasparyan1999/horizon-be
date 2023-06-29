@@ -1,15 +1,15 @@
 import { Response } from "express";
 import HttpStatusCode from "../../../helpers/StatusCodes";
 import { CustomRequest } from "../../../type";
-import { AdminColorService } from "../../../services/admin/color/adminColorService";
+import { AdminSizeService } from "../../../services/admin/size/adminSizeService";
 
-export class AdminColorController {
-  public static async addColor(req: CustomRequest, res: Response) {
+export class AdminSizeController {
+  public static async addSize(req: CustomRequest, res: Response) {
     try {
-      const { newColor } = req.body;
-      const color = await AdminColorService.addColor(newColor);
+      const { newSize } = req.body;
+      const size = await AdminSizeService.addSize(newSize);
 
-      res.send({ color });
+      res.send({ size });
     } catch (err: any) {
       res
         .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
@@ -17,11 +17,11 @@ export class AdminColorController {
     }
   }
 
-  public static async getColor(req: CustomRequest, res: Response) {
+  public static async getSize(req: CustomRequest, res: Response) {
     try {
-      const colors = await AdminColorService.getColors();
+      const sizes = await AdminSizeService.getSizes();
 
-      res.send({ colors });
+      res.send({ sizes });
     } catch (err: any) {
       res
         .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
@@ -29,13 +29,13 @@ export class AdminColorController {
     }
   }
 
-  public static async removeColor(req: CustomRequest, res: Response) {
+  public static async removeSize(req: CustomRequest, res: Response) {
     try {
       const { id } = req.params;
       if (!id) throw new Error("Id is missing");
-      const color = await AdminColorService.removeColor(id);
+      const size = await AdminSizeService.removeSize(id);
 
-      res.send({ color });
+      res.send({ size });
     } catch (err: any) {
       res
         .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
@@ -43,14 +43,14 @@ export class AdminColorController {
     }
   }
 
-  public static async updateColor(req: CustomRequest, res: Response) {
+  public static async updateSize(req: CustomRequest, res: Response) {
     try {
       const { id } = req.params;
-      const { updatedColor } = req.body;
+      const { updatedSize } = req.body;
       if (!id) throw new Error("Id is missing");
-      const color = await AdminColorService.updateColor(id, updatedColor);
+      const size = await AdminSizeService.updateSize(id, updatedSize);
 
-      res.send({ color });
+      res.send({ size });
     } catch (err: any) {
       res
         .status(HttpStatusCode.INTERNAL_SERVER_ERROR)

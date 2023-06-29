@@ -31,7 +31,7 @@ export class AdminColorService {
       const colorRepository = AppDataSource.getRepository(Color);
       const color = await colorRepository.findOne({ where: { id } });
 
-      if (!color) throw new Error("Navigation bar has not found");
+      if (!color) throw new Error("Color has not found");
       const removedItem = await colorRepository.remove(color);
 
       return { ...removedItem, id };

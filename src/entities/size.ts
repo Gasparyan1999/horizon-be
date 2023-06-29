@@ -3,7 +3,6 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  ManyToOne,
   JoinTable,
   ManyToMany,
 } from "typeorm";
@@ -24,6 +23,11 @@ export class Size {
     default: false,
   })
   isArchived!: boolean;
+
+  @Column({
+    default: 0,
+  })
+  priority!: number;
 
   @ManyToMany(() => Product, (product) => product.colorType)
   @JoinTable()

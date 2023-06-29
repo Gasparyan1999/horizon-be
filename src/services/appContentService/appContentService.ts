@@ -20,7 +20,9 @@ export class AppContentService {
   public static async getAppColor() {
     try {
       const colorRepository = AppDataSource.getRepository(Color);
-      const colors = await colorRepository.find();
+      const colors = await colorRepository.find({
+        where: { isArchived: false },
+      });
 
       return colors;
     } catch (err: any) {
@@ -31,7 +33,9 @@ export class AppContentService {
   public static async getAppSize() {
     try {
       const sizeRepository = AppDataSource.getRepository(Size);
-      const sizes = await sizeRepository.find();
+      const sizes = await sizeRepository.find({
+        where: { isArchived: false },
+      });
 
       return sizes;
     } catch (err: any) {

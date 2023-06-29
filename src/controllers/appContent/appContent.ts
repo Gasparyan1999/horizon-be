@@ -3,7 +3,7 @@ import HttpStatusCode from "../../helpers/StatusCodes";
 import { CustomRequest } from "../../type";
 import { AppContentService } from "../../services/appContentService/appContentService";
 
-export class appContentController {
+export class AppContentController {
   public static async navigate(req: CustomRequest, res: Response) {
     try {
       const navBar = await AppContentService.getAppNavigate();
@@ -30,9 +30,9 @@ export class appContentController {
 
   public static async size(req: CustomRequest, res: Response) {
     try {
-      const size = await AppContentService.getAppSize();
+      const sizes = await AppContentService.getAppSize();
 
-      res.send({ size });
+      res.send({ sizes });
     } catch (err: any) {
       res
         .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
